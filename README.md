@@ -1,4 +1,4 @@
-# homebrew-caskage
+# homebrew-caskpkg
 Homebrew [external command](https://docs.brew.sh/External-Commands) to build a macOS installer
 package from a [cask](https://formulae.brew.sh/cask/)
 
@@ -6,24 +6,24 @@ package from a [cask](https://formulae.brew.sh/cask/)
 
 The cask must first already be installed on the system. Using [cyberduck](https://formulae.brew.sh/cask/cyberduck) as an example:
 
-`brew caskage cyberduck`
+`brew cask pkg cyberduck`
 
 WIP
 
 ## Installing it
 
-`brew-caskage` is available from this [formulae tap](https://github.com/mgatner/homebrew-caskage). Add the tap:
+`brewcask-pkg` is available from this [formulae tap](https://github.com/mgatner/homebrew-caskage). Add the tap:
 
-`brew tap mgatner/caskage`
+`brew tap mgatner/caskpkg`
 
 Then install as any other formula:
 
-`brew install brew-caskage`
+`brew install brew-caskpkg`
 
 ## Extras
 
 You can also define a custom identifier prefix in the reverse-domain convention with the `--identifier-prefix` option,
-e.g. `brew caskage --identifier-prefix io.cyberduck cyberduck`.
+e.g. `brew cask pkg --identifier-prefix io.cyberduck cyberduck`.
 
 You can set the path to custom **preinstall** and **postinstall** scripts with the `--scripts` option which passed through to the `pkgbuild` command.  
 For more information refer to `man pkgbuild` which explains:

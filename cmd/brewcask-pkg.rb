@@ -1,7 +1,7 @@
-#:Usage: brew caskage [options] cask
+#:Usage: brew cask pkg [options] cask
 #:
 #:Build a macOS installer package from a cask. It must be already
-#:installed; 'brew caskage' doesn't handle this for you automatically. The
+#:installed; 'brew cask pkg ' doesn't handle this for you automatically. The
 #:'--identifier-prefix' option is strongly recommended in order to follow
 #:the conventions of macOS installer packages (Default 'org.homebrew').
 #:
@@ -38,8 +38,7 @@
 #:		Show this message.
 #:
 
-require 'formula'
-require 'formulary'
+require "cask/all"
 require 'dependencies'
 require 'shellwords'
 require "cli/parser"
@@ -56,10 +55,10 @@ module Homebrew
 
   extend self
 
-  def caskage_args
+  def caskpkg_args
     Homebrew::CLI::Parser.new do
       usage_banner <<~EOS
-      `caskage` [<options>] <cask>
+      `cask pkg` [<options>] <cask>
 
       Build a macOS installer package from a cask. It must be already
       installed; 'brew caskage' doesn't handle this for you automatically. The
@@ -91,8 +90,8 @@ module Homebrew
     end
   end
 
-  def caskage
-    caskage_args.parse
+  def caskpkg
+    caskpkg_args.parse
 
     odebug "DEBUG: args..." if Homebrew.args.debug?
     pp ARGV if Homebrew.args.debug?
@@ -103,6 +102,7 @@ module Homebrew
       identifier_prefix = args.identifier_prefix
     end
 
+=begin
     f = Formulary.factory ARGV.last
     name = f.name
     identifier = identifier_prefix + ".#{name}"
@@ -293,7 +293,8 @@ module Homebrew
     safe_system "pkgbuild", *pargs
 
     FileUtils.rm_rf pkg_root if not Homebrew.args.debug?
+=end
   end
 end
 
-Homebrew.caskage
+Homebrew.caskpkg
